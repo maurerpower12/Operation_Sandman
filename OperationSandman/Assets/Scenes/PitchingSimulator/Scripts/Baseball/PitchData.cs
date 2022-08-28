@@ -9,7 +9,23 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Baseball
     public class PitchData
     {
         [SerializeField]
+        public PitchType PitchType;
+
+        [SerializeField]
         protected float Speed;
+
+        [SerializeField]
+        protected float Torque;
+
+        public Vector3 GetForceVector()
+        {
+            return new Vector3(0.0f, 0.0f, Speed);
+        }
+
+        public Vector3 GetTorqueVector()
+        {
+            return new Vector3(0.0f, 0.0f, Torque);
+        }
     }
 
     public enum PitchType

@@ -7,22 +7,45 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Baseball
 
     public class Baseball : MonoBehaviour
     {
+        #region Fields
         [SerializeField]
         protected bool Pitch = false;
 
         [SerializeField]
         protected Rigidbody Rigidbody;
+        #endregion Fields
 
-        [SerializeField]
-        protected float Thrust = 20f;
-
-        protected virtual void Update()
+        #region Public Methods
+        /// <summary>
+        /// Throws the ball toward the desired location.
+        /// </summary>
+        public virtual void Throw(PitchData pitchData)
         {
-            if (Pitch)
+            Rigidbody.useGravity = true;
+            if(pitchData != null)
             {
-                Rigidbody.AddForce(transform.up * Thrust);
-                Pitch = false;
+                Rigidbody.AddForce(pitchData.GetForceVector(), ForceMode.Impulse);
+                Rigidbody.AddTorque(pitchData.GetTorqueVector(), ForceMode.Impulse);
             }
         }
+
+        /// <summary>
+        /// This is the "get the sign" state where the ball is inactive.
+        /// </summary>
+        public virtual void Hold()
+        {
+            Rigidbody.useGravity = false;
+        }
+        #endregion Public Methods
+
+        #region Protected Methods
+        /// <summary>
+        /// Called on Unity Awake.
+        /// </summary>
+        protected virtual void Awake()
+        {
+            Hold();
+        }
+        #endregion Protected Methods
     }
 }
