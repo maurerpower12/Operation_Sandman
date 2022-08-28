@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// Copyright (c) 2022
 
-public class Baseball : MonoBehaviour
+namespace Assets.Scenes.PitchingSimualtor.Scripts.Baseball
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    using System;
+    using UnityEngine;
 
-    // Update is called once per frame
-    void Update()
+    public class Baseball : MonoBehaviour
     {
-        
+        [SerializeField]
+        protected bool Pitch = false;
+
+        [SerializeField]
+        protected Rigidbody Rigidbody;
+
+        [SerializeField]
+        protected float Thrust = 20f;
+
+        protected virtual void Update()
+        {
+            if (Pitch)
+            {
+                Rigidbody.AddForce(transform.up * Thrust);
+                Pitch = false;
+            }
+        }
     }
 }
