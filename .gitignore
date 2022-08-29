@@ -75,3 +75,4 @@ Library/
 Logs/
 Temp/
 OperationSandman/.vsconfig
+OperationSandman/obj/Debug/
