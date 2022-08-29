@@ -3,6 +3,7 @@
 namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
 {
     using System.Collections.Generic;
+    using Baseball;
     using TMPro;
     using UnityEngine;
 
@@ -62,7 +63,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// <param name="dropDown">Reference to the dropdown that changed.</param>
         public void OnDropDownChanged(TMP_Dropdown dropDown)
         {
-            Debug.Log($"New Pitch Type Selected -> {(Baseball.PitchType)dropDown.value}");
+            Debug.Log($"New Pitch Type Selected -> {(PitchType)dropDown.value}");
             PitchController.PitchTypeIndex = dropDown.value;
         }
 
@@ -73,7 +74,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         {
             PopulatePitchTypeDropdown();
             StrikeZoneController.Strike += OnStrikeCall;
-            BackstopController.Ball += OnBallCall; ;
+            BackstopController.Ball += OnBallCall;
             FormatCount();
         }
 
@@ -107,7 +108,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// <summary>
         /// Processes the strike/ball call and formats it on the HUD.
         /// </summary>
-        /// <param name="strike"></param>
+        /// <param name="strike">If true, pitch was a strick.</param>
         protected virtual void ProcessCall(bool strike)
         {
             if(strike)
@@ -134,7 +135,6 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
 
             // just updated the count
             FormatCount();
-
         }
         #endregion Methods
 
@@ -143,8 +143,8 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// Called when a strike call occurs.
         /// </summary>
         /// <param name="sender">The Strike Zone Controller (aka. the ump)</param>
-        /// <param name="args">The argument (empty)</param>
-        private void OnStrikeCall(object sender, System.EventArgs args)
+        /// <param name="args">The resulting pitch data for display.</param>
+        private void OnStrikeCall(object sender, PitchResultData data)
         {
             Debug.Log("Strike!");
             ProcessCall(true);
@@ -154,8 +154,8 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// Called when a ball call occurs.
         /// </summary>
         /// <param name="sender">The Backstop Controller (aka. the ump)</param>
-        /// <param name="args">The argument (empty)</param>
-        private void OnBallCall(object sender, System.EventArgs e)
+        /// <param name="args">Empty.</param>
+        private void OnBallCall(object sender, System.EventArgs data)
         {
             Debug.Log("Ball");
             ProcessCall(false);
