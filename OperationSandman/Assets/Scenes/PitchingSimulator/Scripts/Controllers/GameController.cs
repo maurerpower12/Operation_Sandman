@@ -19,6 +19,9 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         [SerializeField]
         protected BackstopController BackstopController;
 
+        [SerializeField]
+        protected SoundController SoundController;
+
         /// <summary>
         /// This is the dropdown of pitch types.
         /// </summary>
@@ -63,7 +66,6 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// <param name="dropDown">Reference to the dropdown that changed.</param>
         public void OnDropDownChanged(TMP_Dropdown dropDown)
         {
-            Debug.Log($"New Pitch Type Selected -> {(PitchType)dropDown.value}");
             PitchController.PitchTypeIndex = dropDown.value;
         }
 
@@ -76,6 +78,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             StrikeZoneController.Strike += OnStrikeCall;
             BackstopController.Ball += OnBallCall;
             FormatCount();
+            SoundController.Play(SoundEnum.UmpirePlayBall);
         }
 
         /// <summary>
@@ -134,12 +137,15 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             if(NumberOfBallsInCurrentCount >= 4)
             {
                 //walk
+                SoundController.Play(SoundEnum.CrowdBoo);
                 NumberOfStrikesInCurrentCount = 0;
                 NumberOfBallsInCurrentCount = 0;
             }
             else if(NumberOfStrikesInCurrentCount >= 3)
             {
                 // strikeout
+                SoundController.Play(SoundEnum.CrowdCheer);
+                SoundController.Play(SoundEnum.UmpireOut);
                 NumberOfStrikesInCurrentCount = 0;
                 NumberOfBallsInCurrentCount = 0;
             }
@@ -157,7 +163,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// <param name="args">The resulting pitch data for display.</param>
         private void OnStrikeCall(object sender, PitchResultData data)
         {
-            Debug.Log("Strike!");
+            SoundController.Play(SoundEnum.UmpireStrike);
             ProcessCall(true);
         }
 
@@ -168,7 +174,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// <param name="args">Empty.</param>
         private void OnBallCall(object sender, System.EventArgs data)
         {
-            Debug.Log("Ball");
+            SoundController.Play(SoundEnum.UmpireBall);
             ProcessCall(false);
         }
         #endregion Event Handlers
