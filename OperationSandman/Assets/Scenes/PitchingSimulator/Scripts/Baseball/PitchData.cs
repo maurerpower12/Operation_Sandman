@@ -12,19 +12,19 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Baseball
         public PitchType PitchType;
 
         [SerializeField]
-        protected float Speed;
+        protected Vector3 Speed;
 
         [SerializeField]
-        protected float Torque;
+        protected Vector3 Torque;
 
         public Vector3 GetForceVector()
         {
-            return new Vector3(0.0f, 0.0f, Speed);
+            return Speed;
         }
 
         public Vector3 GetTorqueVector()
         {
-            return new Vector3(0.0f, 0.0f, Torque);
+            return Torque;
         }
     }
 

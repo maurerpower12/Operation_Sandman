@@ -18,8 +18,9 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
 
         [SerializeField]
         protected Transform BaseballStartingPosition;
-        #endregion Fields
 
+        protected List<GameObject> InstantiatedBaseballs = new List<GameObject>();
+        #endregion Fields
 
         #region Properties
         /// <summary>
@@ -55,13 +56,17 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         #region Methods
         public virtual void ThrowPitch()
         {
+            // This is a design decision but only ever allow one ball in play.
+            CleanUpPitches();
+
             var baseballObject = Instantiate(BaseballPrefab,
                                        BaseballStartingPosition.position,
                                        Quaternion.identity, this.transform);
-            var pitchData = Pitches[0];
+            var pitchData = Pitches[PitchTypeIndex];
 
             if(baseballObject != null)
             {
+                InstantiatedBaseballs.Add(baseballObject);
                 var baseballScript = baseballObject.GetComponent<Baseball>();
                 if(baseballScript != null)
                 {
@@ -76,6 +81,12 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             {
                 Debug.LogError("PitchController: Unable to Instantiate a baseball.");
             }
+        }
+
+        public virtual void CleanUpPitches()
+        {
+            InstantiatedBaseballs.ForEach(ball => Destroy(ball));
+            InstantiatedBaseballs.Clear();
         }
         #endregion Methods
     }

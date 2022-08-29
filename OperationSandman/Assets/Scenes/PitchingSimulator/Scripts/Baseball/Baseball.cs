@@ -9,9 +9,6 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Baseball
     {
         #region Fields
         [SerializeField]
-        protected bool Pitch = false;
-
-        [SerializeField]
         protected Rigidbody Rigidbody;
         #endregion Fields
 
