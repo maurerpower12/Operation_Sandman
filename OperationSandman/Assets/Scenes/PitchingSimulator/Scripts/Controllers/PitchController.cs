@@ -4,6 +4,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using Common.Scripts;
     using Baseball;
     using UnityEngine;
 
@@ -19,6 +20,10 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         [SerializeField]
         protected Transform BaseballStartingPosition;
 
+        [SerializeField]
+        protected CursorFollow Cursor;
+
+        [NonSerialized]
         protected List<GameObject> InstantiatedBaseballs = new List<GameObject>();
         #endregion Fields
 
@@ -30,37 +35,21 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         public int PitchTypeIndex { get; set; }
         #endregion Properties
 
-        #region Events
-        /// <summary>
-        /// Event for when the pitch sequence has finished.
-        /// </summary>
-        private event EventHandler PitchCompleteEvent;
-
-        /// <summary>
-        /// A safe add method for <see cref="PitchCompleteEvent"/>.
-        /// </summary>
-        public event EventHandler PitchComplete
-        {
-            add
-            {
-                PitchCompleteEvent -= value;
-                PitchCompleteEvent += value;
-            }
-            remove
-            {
-                PitchCompleteEvent -= value;
-            }
-        }
-        #endregion Events
-
         #region Methods
+        /// <summary>
+        /// Instantates a baseball and throws it.
+        /// </summary>
         public virtual void ThrowPitch()
         {
             // This is a design decision but only ever allow one ball in play.
             CleanUpPitches();
+            var finalStartingPosition = new Vector3(
+                        Cursor.gameObject.transform.position.x,
+                        Cursor.gameObject.transform.position.y,
+                        BaseballStartingPosition.gameObject.transform.position.z);
 
             var baseballObject = Instantiate(BaseballPrefab,
-                                       BaseballStartingPosition.position,
+                                       finalStartingPosition,
                                        Quaternion.identity, this.transform);
             var pitchData = Pitches[PitchTypeIndex];
 
@@ -83,6 +72,9 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes any instantiated baseballs.
+        /// </summary>
         public virtual void CleanUpPitches()
         {
             InstantiatedBaseballs.ForEach(ball => Destroy(ball));

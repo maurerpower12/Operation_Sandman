@@ -79,6 +79,17 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         }
 
         /// <summary>
+        /// Called on Unity Update.
+        /// </summary>
+        protected virtual void Update()
+        {
+            if(Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                PitchController.ThrowPitch();
+            }
+        }
+
+        /// <summary>
         /// Populates the dropdown options for <see cref="PitchTypeDropdown"/>.
         /// </summary>
         protected virtual void PopulatePitchTypeDropdown()
