@@ -1,2 +1,23 @@
-# Operation_Sandman
- Enter Sandman. A Unity Denom project.
+
+# Operation Sandman
+
+Now coming into pitch, Mariano Rivera, #42.
+
+[Play the game on Unity Play ->](https://play.unity.com/mg/other/operationsandman)
+
+This mini project was created to demonstrate my passion for baseball and product design. Utilizing Unity and C#, this game demonstrates several key skills I've learned over the years. The most important of which is creating clean and self documenting code that is easy to understand. This mini-game is a throw back to the old MVP Baseball games of 2004 or 2005 where there would be pitching mini challenges that would test your ability to throw strickes in pressure situations.
+
+Skills used to make this game:
+* Game play scripting (i.e. sound controller, game controllers, etc)
+* Coroutines
+* Memory management (Instantiating & Destroy)
+* Event Handlers
+* Materials, Animations, Textures
+
+
+
+## Demo Gameplay
+https://github.com/maurerpower12/Operation_Sandman/blob/4e559cfe4bc91e64ebb51a81904655202b96bfd1/ReadMeAssets/OperationSandman1.mov
+
+[Watch the Full Video Here](https://github.com/maurerpower12/Operation_Sandman/blob/4e559cfe4bc91e64ebb51a81904655202b96bfd1/ReadMeAssets/OperationSandman1.mov)
+
