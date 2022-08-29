@@ -13,8 +13,17 @@ Skills used to make this game:
 * Memory management (Instantiating & Destroy)
 * Event Handlers
 * Materials, Animations, Textures
+* Force Vectors (Add Force & Add Torque)
 
+## How To Play
+* Use a mouse cursor to aim the ball's release point.
+* Left click fire the baseball.
+* Repeat ⚾️
 
+## Technical Details
+* Built with Unity 2021.3.1f1
+* Made for WebGL
+* Dependencies: Text Mesh Pro
 
 ## Demo Gameplay
 https://user-images.githubusercontent.com/7939290/187137694-d0b519f3-c843-46e7-8988-736c92ec330a.mov
