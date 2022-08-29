@@ -21,8 +21,8 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Baseball
             Rigidbody.useGravity = true;
             if(pitchData != null)
             {
-                Rigidbody.AddForce(pitchData.GetForceVector(), ForceMode.Impulse);
-                Rigidbody.AddTorque(pitchData.GetTorqueVector(), ForceMode.Impulse);
+                Rigidbody.AddForce(pitchData.ForceVector, pitchData.SpeedForceMode);
+                Rigidbody.AddRelativeTorque(pitchData.TorqueVector, pitchData.TorqueForceMode);
             }
         }
 
