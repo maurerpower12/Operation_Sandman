@@ -17,7 +17,6 @@ Skills used to make this game:
 
 
 ## Demo Gameplay
-https://github.com/maurerpower12/Operation_Sandman/blob/4e559cfe4bc91e64ebb51a81904655202b96bfd1/ReadMeAssets/OperationSandman1.mov
+https://user-images.githubusercontent.com/7939290/187137694-d0b519f3-c843-46e7-8988-736c92ec330a.mov
 
 [Watch the Full Video Here](https://github.com/maurerpower12/Operation_Sandman/blob/4e559cfe4bc91e64ebb51a81904655202b96bfd1/ReadMeAssets/OperationSandman1.mov)
-
