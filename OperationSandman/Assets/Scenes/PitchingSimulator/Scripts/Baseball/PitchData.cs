@@ -40,6 +40,12 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Baseball
         public float Duration = 1.0f;
 
         /// <summary>
+        /// The sprite that represents this pitch type.
+        /// </summary>
+        [SerializeField]
+        public Sprite PitchSprite;
+
+        /// <summary>
         /// The delta positon that moves with <see cref="EndPoint"/>
         /// </summary>
         [NonSerialized]

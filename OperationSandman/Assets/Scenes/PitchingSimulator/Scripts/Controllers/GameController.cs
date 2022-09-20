@@ -3,22 +3,36 @@
 namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Baseball;
     using TMPro;
     using UnityEngine;
+    using UnityEngine.UI;
 
     public class GameController : MonoBehaviour
     {
         #region Fields
+        /// <summary>
+        /// Reference to the pitch controller for the game.
+        /// </summary>
         [SerializeField]
         protected PitchController PitchController;
 
+        /// <summary>
+        /// Reference to the strike zone controller for the game.
+        /// </summary>
         [SerializeField]
         protected StrikeZoneController StrikeZoneController;
 
+        /// <summary>
+        /// Reference to the back stop controller for the game.
+        /// </summary>
         [SerializeField]
         protected BackstopController BackstopController;
 
+        /// <summary>
+        /// Reference to the sound controller for the game.
+        /// </summary>
         [SerializeField]
         protected SoundController SoundController;
 
@@ -47,6 +61,12 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         protected TMP_Text CountText;
 
         /// <summary>
+        /// This is the ptich breakdown displayed on the HUD.
+        /// </summary>
+        [SerializeField]
+        protected Image PitchBreakdown;
+
+        /// <summary>
         /// The number of balls thrown in the current count.
         /// </summary>
         [SerializeField]
@@ -61,15 +81,6 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
 
         #region Methods
         /// <summary>
-        /// Called when <see cref="PitchTypeDropdown"/> value is changed.
-        /// </summary>
-        /// <param name="dropDown">Reference to the dropdown that changed.</param>
-        public void OnDropDownChanged(TMP_Dropdown dropDown)
-        {
-            PitchController.PitchTypeIndex = dropDown.value;
-        }
-
-        /// <summary>
         /// Called on Unity Start.
         /// </summary>
         protected virtual void Start()
@@ -79,6 +90,9 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             BackstopController.Ball += OnBallCall;
             FormatCount();
             SoundController.Play(SoundEnum.UmpirePlayBall);
+
+            // Set the pitch to the default.
+            PitchBreakdown.sprite = PitchController.Pitches.FirstOrDefault()?.PitchSprite;
         }
 
         /// <summary>
@@ -183,6 +197,16 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         {
             SoundController.Play(SoundEnum.UmpireBall);
             ProcessCall(false);
+        }
+
+        /// <summary>
+        /// Called when <see cref="PitchTypeDropdown"/> value is changed.
+        /// </summary>
+        /// <param name="dropDown">Reference to the dropdown that changed.</param>
+        public void OnDropDownChanged(TMP_Dropdown dropDown)
+        {
+            PitchController.PitchTypeIndex = dropDown.value;
+            PitchBreakdown.sprite = PitchController.Pitches[dropDown.value].PitchSprite;
         }
         #endregion Event Handlers
     }

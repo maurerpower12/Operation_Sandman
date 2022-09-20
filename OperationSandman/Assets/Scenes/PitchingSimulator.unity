@@ -669,6 +669,7 @@ MonoBehaviour:
   StrikeTextGameObject: {fileID: 1851999925}
   BallTextGameObject: {fileID: 204532424}
   CountText: {fileID: 1993682491}
+  PitchBreakdown: {fileID: 2007065170}
   NumberOfBallsInCurrentCount: 0
   NumberOfStrikesInCurrentCount: 0
 --- !u!1 &382394455
@@ -812,6 +813,7 @@ MonoBehaviour:
   InterpolationPoints:
   - {fileID: 1081367454}
   Duration: 0.65
+  PitchSprite: {fileID: 21300000, guid: c530dbf077a91452292f2db4d3d596fc, type: 3}
 --- !u!1 &472121641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,6 +1640,7 @@ MonoBehaviour:
   InterpolationPoints:
   - {fileID: 2011538993}
   Duration: 0.7
+  PitchSprite: {fileID: 21300000, guid: 29b6c479c7231472689026e86f19a12b, type: 3}
 --- !u!1 &963507193
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,6 +2320,7 @@ MonoBehaviour:
   InterpolationPoints:
   - {fileID: 1537076771}
   Duration: 1
+  PitchSprite: {fileID: 21300000, guid: b1879ea0bc0824c2383f2d142e2be4ce, type: 3}
 --- !u!1 &1165264970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,6 +2355,7 @@ MonoBehaviour:
   InterpolationPoints:
   - {fileID: 221789250}
   Duration: 2
+  PitchSprite: {fileID: 21300000, guid: f1795f8787f714ef6ab8a5841211ccc5, type: 3}
 --- !u!4 &1165264972
 Transform:
   m_ObjectHideFlags: 0
@@ -3088,6 +3093,7 @@ MonoBehaviour:
   InterpolationPoints:
   - {fileID: 1666114637}
   Duration: 0.5
+  PitchSprite: {fileID: 21300000, guid: 71b95c38b1d4845b49ca60b48f1a5b78, type: 3}
 --- !u!4 &1410919906
 Transform:
   m_ObjectHideFlags: 0
@@ -3551,6 +3557,7 @@ MonoBehaviour:
   EndPoint: {x: 0, y: 0, z: 0}
   InterpolationPoints: []
   Duration: 0.5
+  PitchSprite: {fileID: 21300000, guid: 4c94948f0716f47dfb88a02b62d9b5bc, type: 3}
 --- !u!1 &1666114637
 GameObject:
   m_ObjectHideFlags: 0
@@ -4203,7 +4210,7 @@ GameObject:
   - component: {fileID: 2007065171}
   - component: {fileID: 2007065170}
   m_Layer: 5
-  m_Name: StrikeZone
+  m_Name: Pitch Breakdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4226,8 +4233,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 60, y: 65}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 100, y: 110}
+  m_SizeDelta: {x: 150, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2007065170
 MonoBehaviour:
@@ -4249,9 +4256,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f002e7da4fb8e44fd816d071c52a6d00, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c94948f0716f47dfb88a02b62d9b5bc, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

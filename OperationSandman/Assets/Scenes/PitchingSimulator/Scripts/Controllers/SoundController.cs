@@ -13,15 +13,26 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
     public class SoundController : MonoBehaviour
     {
         #region Fields
+        /// <summary>
+        /// Represents all of the audio data for the game.
+        /// </summary>
         [SerializeField]
         protected List<AudioClipData> AudioData = new List<AudioClipData>();
         #endregion Fields
 
         #region Methods
         /// <summary>
+        /// Called on Unity's Awake.
+        /// </summary>
+        protected virtual void Awake()
+        {
+            Play(SoundEnum.UmpirePlayBall);
+        }
+
+        /// <summary>
         /// Plays the passed audio clip
         /// </summary>
-        public virtual void Play(SoundEnum soundEnum)
+        public void Play(SoundEnum soundEnum)
         {
             var sfx = AudioData.FirstOrDefault(item => item.SoundEnum == soundEnum);
             if(sfx != null)
@@ -37,6 +48,9 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
     }
 
     #region Enum
+    /// <summary>
+    /// Enum for each possible sfx.
+    /// </summary>
     public enum SoundEnum
     {
         UmpirePlayBall = 0,
