@@ -95,13 +95,20 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// <summary>
         /// Populates the dropdown options for <see cref="PitchTypeDropdown"/>.
         /// </summary>
-        protected virtual void PopulatePitchTypeDropdown()
+        protected void PopulatePitchTypeDropdown()
         {
             // Collect all of the pitch names that are configured on the controller.
             var options = new List<string>();
             foreach(var pitch in PitchController.Pitches)
             {
-                options.Add(pitch.PitchType.ToString("G"));
+                if(pitch != null)
+                {
+                    options.Add(pitch.PitchType.ToString("G"));
+                }
+                else
+                {
+                    Debug.LogWarning("Unable to populate a null pitch option from the Pitch Controller");
+                }
             }
 
             // Clear the old options of the Dropdown menu
@@ -114,7 +121,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// <summary>
         /// Formats the current AB count.
         /// </summary>
-        protected virtual void FormatCount()
+        protected void FormatCount()
         {
             CountText.text = $"{NumberOfBallsInCurrentCount}-{NumberOfStrikesInCurrentCount}";
         }
@@ -123,7 +130,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// Processes the strike/ball call and formats it on the HUD.
         /// </summary>
         /// <param name="strike">If true, pitch was a strick.</param>
-        protected virtual void ProcessCall(bool strike)
+        protected void ProcessCall(bool strike)
         {
             if(strike)
             {

@@ -2,27 +2,47 @@
 
 namespace Assets.Scenes.PitchingSimualtor.Scripts.Baseball
 {
-    using System;
+    using System.Linq;
+    using Common.Scripts;
     using UnityEngine;
 
     public class Baseball : MonoBehaviour
     {
         #region Fields
+        /// <summary>
+        /// The rigidboday that is attached to the baseball.
+        /// </summary>
         [SerializeField]
         protected Rigidbody Rigidbody;
+
+        /// <summary>
+        /// A reference to the script that will move the baseball.
+        /// </summary>
+        [SerializeField]
+        protected MoveObjectToTargetWithArc MoveObjectToTargetWithArc;
         #endregion Fields
 
         #region Public Methods
         /// <summary>
         /// Throws the ball toward the desired location.
         /// </summary>
-        public virtual void Throw(PitchData pitchData)
+        /// <param name="pitchData">The data needed to throw the pitch.</param>
+        public void Throw(PitchData pitchData)
         {
-            Rigidbody.useGravity = true;
+            Rigidbody.useGravity = false;
             if(pitchData != null)
             {
-                Rigidbody.AddForce(pitchData.ForceVector, pitchData.SpeedForceMode);
-                Rigidbody.AddRelativeTorque(pitchData.TorqueVector, pitchData.TorqueForceMode);
+                if(MoveObjectToTargetWithArc)
+                {
+                    StartCoroutine(MoveObjectToTargetWithArc.Move(gameObject,
+                        gameObject.transform.position, pitchData.EndPoint,
+                        pitchData.InterpolationPoints.Select(point => point.transform.position).ToList(),
+                        pitchData.Duration));
+                }
+                else
+                {
+                    Debug.LogError("Unable to get move object");
+                }
             }
         }
 

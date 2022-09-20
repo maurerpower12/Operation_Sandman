@@ -8,21 +8,39 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
     using Baseball;
     using UnityEngine;
 
+    /// <summary>
+    /// Controlls the pitch sequence and generating the baseballs.
+    /// </summary>
     public class PitchController : MonoBehaviour
     {
         #region Fields
+        /// <summary>
+        /// The types of pitches this pitcher has.
+        /// </summary>
         [SerializeField]
         public List<PitchData> Pitches;
 
+        /// <summary>
+        /// The baesball prefab that the pitch will throw.
+        /// </summary>
         [SerializeField]
         protected GameObject BaseballPrefab;
 
+        /// <summary>
+        /// The starting position of the throw.
+        /// </summary>
         [SerializeField]
         protected Transform BaseballStartingPosition;
 
+        /// <summary>
+        /// The cursor of where the player is trying to throw.
+        /// </summary>
         [SerializeField]
         protected CursorFollow Cursor;
 
+        /// <summary>
+        /// Dynamic list of all of the baseballs we have in the scene.
+        /// </summary>
         [NonSerialized]
         protected List<GameObject> InstantiatedBaseballs = new List<GameObject>();
         #endregion Fields
@@ -49,8 +67,8 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
                         BaseballStartingPosition.gameObject.transform.position.z);
 
             var baseballObject = Instantiate(BaseballPrefab,
-                                       finalStartingPosition,
-                                       Quaternion.identity, this.transform);
+                                        finalStartingPosition,
+                                        Quaternion.identity, this.transform);
             var pitchData = Pitches[PitchTypeIndex];
 
             if(baseballObject != null)
@@ -59,6 +77,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
                 var baseballScript = baseballObject.GetComponent<Baseball>();
                 if(baseballScript != null)
                 {
+                    pitchData.GeneratePitchData(Cursor.gameObject);
                     baseballScript.Throw(pitchData);
                 }
                 else
@@ -75,7 +94,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// <summary>
         /// Deletes any instantiated baseballs.
         /// </summary>
-        public virtual void CleanUpPitches()
+        public void CleanUpPitches()
         {
             InstantiatedBaseballs.ForEach(ball => Destroy(ball));
             InstantiatedBaseballs.Clear();
