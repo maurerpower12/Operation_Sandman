@@ -9,6 +9,11 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
     using UnityEngine;
     using UnityEngine.UI;
 
+    /// <summary>
+    /// The main game controller with various responsibilities including:
+    /// - Controlling the HUD
+    /// - Processing the ball and strikes (umpire logic)
+    /// </summary>
     public class GameController : MonoBehaviour
     {
         #region Fields
@@ -89,7 +94,6 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             StrikeZoneController.Strike += OnStrikeCall;
             BackstopController.Ball += OnBallCall;
             FormatCount();
-            SoundController.Play(SoundEnum.UmpirePlayBall);
 
             // Set the pitch to the default.
             PitchBreakdown.sprite = PitchController.Pitches.FirstOrDefault()?.PitchSprite;

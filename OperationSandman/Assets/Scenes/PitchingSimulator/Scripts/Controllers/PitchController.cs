@@ -7,6 +7,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
     using Common.Scripts;
     using Baseball;
     using UnityEngine;
+    using System.Collections;
 
     /// <summary>
     /// Controlls the pitch sequence and generating the baseballs.
@@ -39,10 +40,39 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         protected CursorFollow Cursor;
 
         /// <summary>
+        /// The animator used to control the pitcher.
+        /// </summary>
+        [SerializeField]
+        protected Animator PitcherAnimator;
+
+        /// <summary>
         /// Dynamic list of all of the baseballs we have in the scene.
         /// </summary>
         [NonSerialized]
         protected List<GameObject> InstantiatedBaseballs = new List<GameObject>();
+
+        /// <summary>
+        /// The string value of the pitch state in the animator.
+        /// </summary>
+        [NonSerialized]
+        private string PitchTriggerName = "Pitch";
+
+        /// <summary>
+        /// The hash value of the pitch state in the animator.
+        /// </summary>
+        [NonSerialized]
+        private int PitchStateHash = -1;
+
+        /// <summary>
+        /// The duration of <see cref="PitchTriggerName"/>.
+        /// </summary>
+        /// <remarks>
+        /// There are ways to get this value dynamically based on the animation
+        /// length or a custom key frame set up in the pitching animation.
+        /// Using this solution of a hardcoded value for now.
+        /// </remarks>
+        [NonSerialized]
+        private WaitForSeconds PitchStateWaitInSeconds;
         #endregion Fields
 
         #region Properties
@@ -51,25 +81,59 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// </summary>
         /// <remarks>Zero based index.</remarks>
         public int PitchTypeIndex { get; set; }
+
+        /// <summary>
+        /// True if the pitcher is currently throwing a pitch.
+        /// </summary>
+        public bool IsThrowing { get; set; }
         #endregion Properties
 
         #region Methods
         /// <summary>
-        /// Instantates a baseball and throws it.
+        /// Called on Unity Awake.
         /// </summary>
-        public virtual void ThrowPitch()
+        protected virtual void Awake()
         {
-            // This is a design decision but only ever allow one ball in play.
-            CleanUpPitches();
-            var finalStartingPosition = new Vector3(
-                        Cursor.gameObject.transform.position.x,
-                        Cursor.gameObject.transform.position.y,
-                        BaseballStartingPosition.gameObject.transform.position.z);
+            PitchStateHash = Animator.StringToHash(PitchTriggerName);
+            PitchStateWaitInSeconds = new WaitForSeconds(2.0f);
+        }
+
+        /// <summary>
+        /// Instantiates a baseball and throws it.
+        /// </summary>
+        public void ThrowPitch()
+        {
+            if(!IsThrowing)
+            {
+                // This is a design decision but only ever allow one ball in play.
+                CleanUpPitches();
+
+                StartCoroutine(PitchingSequence(Pitches[PitchTypeIndex]));
+            }
+        }
+
+        /// <summary>
+        /// Deletes any instantiated baseballs.
+        /// </summary>
+        public void CleanUpPitches()
+        {
+            InstantiatedBaseballs.ForEach(ball => Destroy(ball));
+            InstantiatedBaseballs.Clear();
+        }
+
+        /// <summary>
+        /// Perform the pitching sequence.
+        /// </summary>
+        /// <returns>Coroutine.</returns>
+        protected IEnumerator PitchingSequence(PitchData pitchData)
+        {
+            IsThrowing = true;
+            PitcherAnimator.SetTrigger(PitchStateHash);
+            yield return PitchStateWaitInSeconds;
 
             var baseballObject = Instantiate(BaseballPrefab,
-                                        finalStartingPosition,
+                                        BaseballStartingPosition.gameObject.transform.position,
                                         Quaternion.identity, this.transform);
-            var pitchData = Pitches[PitchTypeIndex];
 
             if(baseballObject != null)
             {
@@ -89,15 +153,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             {
                 Debug.LogError("PitchController: Unable to Instantiate a baseball.");
             }
-        }
-
-        /// <summary>
-        /// Deletes any instantiated baseballs.
-        /// </summary>
-        public void CleanUpPitches()
-        {
-            InstantiatedBaseballs.ForEach(ball => Destroy(ball));
-            InstantiatedBaseballs.Clear();
+            IsThrowing = false;
         }
         #endregion Methods
     }

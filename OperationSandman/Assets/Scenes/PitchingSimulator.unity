@@ -274,8 +274,9 @@ MonoBehaviour:
   - {fileID: 439374271}
   - {fileID: 1165264971}
   BaseballPrefab: {fileID: 2475940775587226935, guid: 1d4eeb0bcdf7344ffad43ac3d48dc734, type: 3}
-  BaseballStartingPosition: {fileID: 1839530160}
+  BaseballStartingPosition: {fileID: 1701159046}
   Cursor: {fileID: 5121184}
+  PitcherAnimator: {fileID: 1836070567}
 --- !u!1 &204532424
 GameObject:
   m_ObjectHideFlags: 0
@@ -3809,6 +3810,11 @@ Transform:
   m_Father: {fileID: 1410919906}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1701159046 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8447082967072642302, guid: cf8e3e8640ec44d378cea594a0eac97a, type: 3}
+  m_PrefabInstance: {fileID: 1371871791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1748122595
 GameObject:
   m_ObjectHideFlags: 0
@@ -4040,6 +4046,11 @@ Transform:
 --- !u!4 &1836070566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cf8e3e8640ec44d378cea594a0eac97a, type: 3}
+  m_PrefabInstance: {fileID: 1371871791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1836070567 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: cf8e3e8640ec44d378cea594a0eac97a, type: 3}
   m_PrefabInstance: {fileID: 1371871791}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1839530159
