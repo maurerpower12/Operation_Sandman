@@ -1,0 +1,305 @@
+fileFormatVersion: 2
+guid: e98f93ea26fdc40c5928e05089697e0f
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: 7882146921286690810
+    second: Plane.001|Cube.002Action
+  - first:
+      74: -6588832269155171251
+    second: Plane.001|Cube.003Action
+  - first:
+      74: 2925043167070244705
+    second: Plane.001|Cube.005Action
+  - first:
+      74: 1502054689810720959
+    second: Plane.001|Cube.006Action
+  - first:
+      74: -2858551162337178960
+    second: Plane.001|Plane.001Action
+  - first:
+      74: -3143186894332721769
+    second: Cube.006|Cube.002Action
+  - first:
+      74: -4008819099484803213
+    second: Cube.006|Cube.003Action
+  - first:
+      74: -7909863099968968139
+    second: Cube.006|Cube.005Action
+  - first:
+      74: -4081537619849912291
+    second: Cube.006|Cube.006Action
+  - first:
+      74: 3530936020430221597
+    second: Cube.006|Plane.001Action
+  - first:
+      74: 7250341002990162127
+    second: Cube.005|Cube.002Action
+  - first:
+      74: 9146543417632441198
+    second: Cube.005|Cube.003Action
+  - first:
+      74: 2108944049028585761
+    second: Cube.005|Cube.005Action
+  - first:
+      74: 1516579047678073448
+    second: Cube.005|Cube.006Action
+  - first:
+      74: -5295190120913705051
+    second: Cube.005|Plane.001Action
+  - first:
+      74: 3244617880250996793
+    second: Cube.003|Cube.002Action
+  - first:
+      74: -8906869970063597199
+    second: Cube.003|Cube.003Action
+  - first:
+      74: -4916936998134895019
+    second: Cube.003|Cube.005Action
+  - first:
+      74: 3881729957397275112
+    second: Cube.003|Cube.006Action
+  - first:
+      74: -3325735188080790493
+    second: Cube.003|Plane.001Action
+  - first:
+      74: 6712369695479197947
+    second: Cube.002|Cube.002Action
+  - first:
+      74: -7944832092688391277
+    second: Cube.002|Cube.003Action
+  - first:
+      74: 2589519420398832599
+    second: Cube.002|Cube.005Action
+  - first:
+      74: -3609686545537780727
+    second: Cube.002|Cube.006Action
+  - first:
+      74: -1908033914815264928
+    second: Cube.002|Plane.001Action
+  - first:
+      74: 5550672652660086491
+    second: Car Rig|Cube.002Action
+  - first:
+      74: -993731694695170709
+    second: Car Rig|Cube.003Action
+  - first:
+      74: 7327233922071903992
+    second: Car Rig|Cube.005Action
+  - first:
+      74: 9091438236171020489
+    second: Car Rig|Cube.006Action
+  - first:
+      74: 2310098019020481418
+    second: Car Rig|Plane.001Action
+  - first:
+      74: -9139801454874878337
+    second: Car Rig.001|Cube.002Action
+  - first:
+      74: 2157533711922159062
+    second: Car Rig.001|Cube.003Action
+  - first:
+      74: 5734842915129740186
+    second: Car Rig.001|Cube.005Action
+  - first:
+      74: 5657469745346713903
+    second: Car Rig.001|Cube.006Action
+  - first:
+      74: -6214072361343300874
+    second: Car Rig.001|Plane.001Action
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: backwindow
+    second: {fileID: 2100000, guid: ac579a620e3074cf3a2afb39c631ca54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body
+    second: {fileID: 2100000, guid: b652bc51643fe46d2ac65fd3bb68bb0d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body.001
+    second: {fileID: 2100000, guid: a0819715877274636b8c3d79ed0ceb7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brake
+    second: {fileID: 2100000, guid: 919ebeb8b713a4720b5b1c018be68b3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brake.001
+    second: {fileID: 2100000, guid: 9af29f372f92d4c12981f4a77ee65cab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: 6c29c8b9fe01840b88fdfd25eea579b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass.001
+    second: {fileID: 2100000, guid: e7cc369dc206f47eba394a89b59e639e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: interior
+    second: {fileID: 2100000, guid: 8d86f1cc9766448deb28d8a4e0ffcbd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: interior.001
+    second: {fileID: 2100000, guid: 90da80facce4048eeadd922bd5e1b9c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: licence plate
+    second: {fileID: 2100000, guid: 6c713364598f748eea50a1fd4f813f4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: light dark
+    second: {fileID: 2100000, guid: ba58f9fbe90924975afcb041ddb04d80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: orange back light
+    second: {fileID: 2100000, guid: e0d8b7cce9bff47f6a592b14120b5184, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: orange roof light
+    second: {fileID: 2100000, guid: 9de987a98c4df43c382b759a0008a7ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: red roof light.001
+    second: {fileID: 2100000, guid: 460904c476e6149e5904892e59ffd799, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof light
+    second: {fileID: 2100000, guid: 95f976f4f1afd4062a1a4ebccff1481b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof light stand
+    second: {fileID: 2100000, guid: 4e80c00a64e7d42e085a8fba2824edc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wheel
+    second: {fileID: 2100000, guid: afeaff23e2d53420b8516ca5d8b41658, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wheel.001
+    second: {fileID: 2100000, guid: f6f7cd1d2b6614ef48d4ac5e8247d93c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white roof light
+    second: {fileID: 2100000, guid: 2a2724301bae7427c91e2119d88dc2c9, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
