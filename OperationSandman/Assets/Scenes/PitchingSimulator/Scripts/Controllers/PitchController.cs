@@ -124,10 +124,14 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// <summary>
         /// Perform the pitching sequence.
         /// </summary>
+        /// <param name="pitchData">The data for the pitch.</param>
         /// <returns>Coroutine.</returns>
         protected IEnumerator PitchingSequence(PitchData pitchData)
         {
             IsThrowing = true;
+            // First, make sure we grab the cursor data for where the player is trying to throw the ball.
+            pitchData.GeneratePitchData(Cursor.gameObject);
+
             PitcherAnimator.SetTrigger(PitchStateHash);
             yield return PitchStateWaitInSeconds;
 
@@ -141,8 +145,8 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
                 var baseballScript = baseballObject.GetComponent<Baseball>();
                 if(baseballScript != null)
                 {
-                    pitchData.GeneratePitchData(Cursor.gameObject);
                     baseballScript.Throw(pitchData);
+                    yield return new WaitForSeconds(pitchData.Duration);
                 }
                 else
                 {
@@ -153,6 +157,15 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             {
                 Debug.LogError("PitchController: Unable to Instantiate a baseball.");
             }
+
+            // Hold while the pitcher is still throwing the ball
+            while(PitcherAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash == PitchStateHash)
+            {
+                yield return null;
+            }
+
+            CleanUpPitches();
+
             IsThrowing = false;
         }
         #endregion Methods
