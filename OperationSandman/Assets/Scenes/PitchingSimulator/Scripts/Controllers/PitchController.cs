@@ -64,6 +64,18 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         private int PitchStateHash = -1;
 
         /// <summary>
+        /// The string value of the wave state in the animator.
+        /// </summary>
+        [NonSerialized]
+        private string WaveTriggerName = "Wave";
+
+        /// <summary>
+        /// The hash value of the wave state in the animator.
+        /// </summary>
+        [NonSerialized]
+        private int WaveStateHash = -1;
+
+        /// <summary>
         /// The duration of <see cref="PitchTriggerName"/>.
         /// </summary>
         /// <remarks>
@@ -95,7 +107,16 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         protected virtual void Awake()
         {
             PitchStateHash = Animator.StringToHash(PitchTriggerName);
+            WaveStateHash = Animator.StringToHash(WaveTriggerName);
             PitchStateWaitInSeconds = new WaitForSeconds(2.0f);
+        }
+
+        /// <summary>
+        /// Called on Unity Start.
+        /// </summary>
+        protected virtual void Start()
+        {
+            PitcherAnimator.SetTrigger(WaveStateHash);
         }
 
         /// <summary>
@@ -132,9 +153,11 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             // First, make sure we grab the cursor data for where the player is trying to throw the ball.
             pitchData.GeneratePitchData(Cursor.gameObject);
 
+            // Start the pitcher throwing animation
             PitcherAnimator.SetTrigger(PitchStateHash);
             yield return PitchStateWaitInSeconds;
 
+            // Create a baseball to throw.
             var baseballObject = Instantiate(BaseballPrefab,
                                         BaseballStartingPosition.gameObject.transform.position,
                                         Quaternion.identity, this.transform);
