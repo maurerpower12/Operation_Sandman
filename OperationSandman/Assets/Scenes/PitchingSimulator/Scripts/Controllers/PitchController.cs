@@ -37,7 +37,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// The cursor of where the player is trying to throw.
         /// </summary>
         [SerializeField]
-        protected CursorFollow Cursor;
+        public CursorFollow Cursor;
 
         /// <summary>
         /// The animator used to control the pitcher.

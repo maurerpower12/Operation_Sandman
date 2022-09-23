@@ -220,8 +220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4199759119474b829c3dd53f944c874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cursor: {fileID: 5121181}
   Distance: 10
+  MinBounds: {x: -1.5, y: 0.4, z: 0}
+  MaxBounds: {x: 1.5, y: 2, z: 0}
 --- !u!1001 &8948972
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -104,7 +104,8 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// </summary>
         protected virtual void Update()
         {
-            if(Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(0) &&
+                PitchController.Cursor.IsCursorWithinBounds())
             {
                 PitchController.ThrowPitch();
             }
