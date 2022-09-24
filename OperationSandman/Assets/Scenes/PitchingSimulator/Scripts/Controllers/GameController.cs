@@ -30,12 +30,6 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         protected StrikeZoneController StrikeZoneController;
 
         /// <summary>
-        /// Reference to the back stop controller for the game.
-        /// </summary>
-        [SerializeField]
-        protected BackstopController BackstopController;
-
-        /// <summary>
         /// Reference to the sound controller for the game.
         /// </summary>
         [SerializeField]
@@ -92,11 +86,12 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         {
             PopulatePitchTypeDropdown();
             StrikeZoneController.Strike += OnStrikeCall;
-            BackstopController.Ball += OnBallCall;
+            StrikeZoneController.Ball += OnBallCall;
             FormatCount();
 
             // Set the pitch to the default.
             PitchBreakdown.sprite = PitchController.Pitches.FirstOrDefault()?.PitchSprite;
+            PitchController.Cursor.Displayable = true;
         }
 
         /// <summary>

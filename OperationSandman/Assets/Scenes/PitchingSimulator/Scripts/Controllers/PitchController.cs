@@ -46,6 +46,12 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         protected Animator PitcherAnimator;
 
         /// <summary>
+        /// Reference to the strike zone controller for the game.
+        /// </summary>
+        [SerializeField]
+        protected StrikeZoneController StrikeZoneController;
+
+        /// <summary>
         /// Dynamic list of all of the baseballs we have in the scene.
         /// </summary>
         [NonSerialized]
@@ -150,6 +156,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         protected IEnumerator PitchingSequence(PitchData pitchData)
         {
             IsThrowing = true;
+            Cursor.Locked = true;
             // First, make sure we grab the cursor data for where the player is trying to throw the ball.
             pitchData.GeneratePitchData(Cursor.gameObject);
 
@@ -170,6 +177,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
                 {
                     baseballScript.Throw(pitchData);
                     yield return new WaitForSeconds(pitchData.Duration);
+                    StrikeZoneController.OnPitchFinished(pitchData.EndPoint);
                 }
                 else
                 {
@@ -188,7 +196,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
             }
 
             CleanUpPitches();
-
+            Cursor.Locked = false;
             IsThrowing = false;
         }
         #endregion Methods
