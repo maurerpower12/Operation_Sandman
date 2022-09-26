@@ -31,6 +31,7 @@ Skills used to make this game:
 ## 3D Assets
 * [NYC Cab](https://skfb.ly/6RLPz)
 * [Modular Lowpoly Streets](https://assetstore.unity.com/packages/3d/environments/urban/modular-lowpoly-streets-free-192094) 
+* [Mixamo 3D Timmy character and pitching animation](https://www.mixamo.com)
 
 ## Demo Gameplay
 https://user-images.githubusercontent.com/7939290/192202356-824b96b8-0443-48c8-aa62-ace5494df19f.mov
