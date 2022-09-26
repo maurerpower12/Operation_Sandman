@@ -930,6 +930,51 @@ MonoBehaviour:
   PitchBreakdown: {fileID: 2007065170}
   NumberOfBallsInCurrentCount: 0
   NumberOfStrikesInCurrentCount: 0
+--- !u!1 &316000478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316000479}
+  - component: {fileID: 316000480}
+  m_Layer: 0
+  m_Name: StrikeZoneCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &316000479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316000478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.21, y: 0, z: 1.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2042085646}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &316000480
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316000478}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.657979, y: 5.1667886, z: 9}
+  m_Center: {x: 0.46163753, y: 1.2165132, z: 0}
 --- !u!4 &364064009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2595917650233753746, guid: b262b4a56131f4e439ac27d460093cfa, type: 3}
@@ -5374,6 +5419,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1891994508}
+  - {fileID: 316000479}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5390,8 +5436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseballDecalPrefab: {fileID: 4463493872149505178, guid: 45efde45d2b4949bb840c16762ffbe70, type: 3}
-  MinStrikeZoneBounds: {x: -0.3, y: 0.4, z: 0}
-  MaxStrikeZoneBounds: {x: 0.5, y: -0.2, z: 0}
+  Collider: {fileID: 316000480}
 --- !u!1 &2053712252
 GameObject:
   m_ObjectHideFlags: 0

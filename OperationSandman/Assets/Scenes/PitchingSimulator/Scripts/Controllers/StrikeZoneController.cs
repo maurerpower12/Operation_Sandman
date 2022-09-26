@@ -23,16 +23,11 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         private List<GameObject> BaseballDecals = new List<GameObject>();
 
         /// <summary>
-        /// The min bounds that the strike should be in.
+        /// The collider that defines the strike zone.
         /// </summary>
+        /// <remarks>No collider events are used.</remarks>
         [SerializeField]
-        protected Vector3 MinStrikeZoneBounds;
-
-        /// <summary>
-        /// The max bounds that the strike should be in.
-        /// </summary>
-        [SerializeField]
-        protected Vector3 MaxStrikeZoneBounds;
+        protected Collider Collider;
         #endregion Fields
 
         #region Events
@@ -84,39 +79,13 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// Called when the collision occurs on this object.
         /// </summary>
         /// <param name="collision">Object involved in this collision.</param>
-        public void OnCollisionEnter(Collision collision)
-        {
-            var data = new PitchResultData();
-            // For debug purposes, draw a ray at the collision point.
-            var contact = collision.GetContact(0);
-            Debug.DrawRay(contact.point, contact.normal, Color.green);
-            data.Point = contact.point;
-            data.Normal = contact.normal;
-
-            collision.gameObject.SetActive(false);
-            var pitchCall = IsPitchWithZone(contact.point);
-            if(pitchCall)
-            {
-                StrikeEvent?.Invoke(this, data);
-            }
-            else
-            {
-                BallEvent?.Invoke(this, EventArgs.Empty);
-            }
-
-            StopAllCoroutines();
-            StartCoroutine(DisplayLastPitch(data));
-        }
-
-        /// <summary>
-        /// Called when the collision occurs on this object.
-        /// </summary>
-        /// <param name="collision">Object involved in this collision.</param>
         public void OnPitchFinished(Vector3 contactPoint)
         {
-            var data = new PitchResultData();
-            data.Point = contactPoint;
-            var pitchCall = IsPitchWithZone(contactPoint);
+            var data = new PitchResultData
+            {
+                Point = contactPoint
+            };
+            var pitchCall = IsPitchWithinStrikeZone(contactPoint);
             if(pitchCall)
             {
                 StrikeEvent?.Invoke(this, data);
@@ -135,7 +104,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// </summary>
         /// <param name="data">Result data for the last pitch.</param>
         /// <returns>Coroutine.</returns>
-        protected virtual IEnumerator DisplayLastPitch(PitchResultData data)
+        protected IEnumerator DisplayLastPitch(PitchResultData data)
         {
             var baseballObject = Instantiate(BaseballDecalPrefab, data.Point,
                                        Quaternion.identity, this.transform);
@@ -149,12 +118,9 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         /// Determines if the pitch is pointing a valid direction.
         /// </summary>
         /// <returns>True if it is within bounds. Else false.</returns>
-        private bool IsPitchWithZone(Vector3 contactPoint)
+        private bool IsPitchWithinStrikeZone(Vector3 contactPoint)
         {
-            return contactPoint.x <= MaxStrikeZoneBounds.x &&
-                   contactPoint.y <= MaxStrikeZoneBounds.y &&
-                   contactPoint.x >= MinStrikeZoneBounds.x &&
-                   contactPoint.y >= MinStrikeZoneBounds.y;
+            return Collider.bounds.Contains(contactPoint);
         }
         #endregion Methods
     }
