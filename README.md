@@ -3,9 +3,7 @@
 
 Now coming into pitch, Mariano Rivera, #42.
 
-[Play the game on Unity Play ->](https://play.unity.com/mg/other/operationsandman)
-
-<img width="1501" alt="OperationSandmanScreenCapture2" src="https://user-images.githubusercontent.com/7939290/192202275-611b7a2c-d08e-449a-af3b-fb2fdd3ccb97.png">
+[<img width="1501" alt="OperationSandmanScreenCapture2" src="https://user-images.githubusercontent.com/7939290/192202275-611b7a2c-d08e-449a-af3b-fb2fdd3ccb97.png">Play the game on Unity Play ->](https://play.unity.com/mg/other/operationsandman)
 
 This mini project was created to demonstrate my passion for baseball and product design. Utilizing Unity and C#, this game demonstrates several key skills I've learned over the years. The most important of which is creating clean and self documenting code that is easy to understand. This mini-game is a throw back to the old [MVP Baseball games of 2005](https://www.ign.com/wikis/mvp-baseball-2005/Mini_Games) where there would be pitching mini challenges that would test your ability to throw strickes in pressure situations.
 
@@ -24,7 +22,7 @@ Skills used to make this game:
 * Repeat ⚾️
 
 ## Technical Details
-* Built with Unity 2021.3.1f1
+* Built with Unity 2022.1.18f1
 * Made for WebGL
 * Dependencies: Text Mesh Pro
 
