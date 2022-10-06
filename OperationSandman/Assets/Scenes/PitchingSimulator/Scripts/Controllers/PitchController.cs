@@ -8,6 +8,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
     using Baseball;
     using UnityEngine;
     using System.Collections;
+    using Assets.Scenes.PitchingSimualtor.Scripts.MiniGame;
 
     /// <summary>
     /// Controlls the pitch sequence and generating the baseballs.
@@ -123,6 +124,10 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         protected virtual void Start()
         {
             PitcherAnimator.SetTrigger(WaveStateHash);
+            foreach(var pitch in Pitches)
+            {
+                BoardController.Instance.PitchColors.Add(pitch.PitchColor);
+            }
         }
 
         /// <summary>

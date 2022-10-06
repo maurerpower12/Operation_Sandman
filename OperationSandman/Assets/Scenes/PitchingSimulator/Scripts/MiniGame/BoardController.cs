@@ -10,9 +10,6 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
     {
         #region Fields
         [SerializeField]
-        protected List<Sprite> Characters = new List<Sprite>();
-
-        [SerializeField]
         protected GameObject Tile;
 
         [SerializeField]
@@ -25,7 +22,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
         protected Transform BoardParentObject;
 
         [NonSerialized]
-        protected GameObject[,] Tiles;
+        protected Tile[,] Tiles;
         #endregion Fields
 
         #region Events
@@ -36,6 +33,11 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
         /// Singleton Instance of this class.
         /// </summary>
         public static BoardController Instance { get; private set; }
+
+        /// <summary>
+        /// The types of pitch colors possible.
+        /// </summary>
+        public List<Color> PitchColors { get; set; }
         #endregion Properties
 
         #region Methods
@@ -45,6 +47,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
         protected void Awake()
         {
             Instance = this;
+            PitchColors = new List<Color>();
         }
 
         /// <summary>
@@ -73,20 +76,31 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
         /// <param name="yOffset"></param>
         protected void GenerateBoard(float xOffset, float yOffset)
         {
-            Tiles = new GameObject[(int)BoardSize.x, (int)BoardSize.y];
+            // there should only ever be one board so reset if needed.
+            ResetBoard();
 
-            var startX = transform.position.x;
-            var startY = transform.position.y;
+            Tiles = new Tile[(int)BoardSize.x, (int)BoardSize.y];
+
+            var startX = BoardParentObject.position.x;
+            var startY = BoardParentObject.position.y;
+            Color previousColor = PitchColors[0];
 
             for(int x = 0; x < (int)BoardSize.x; x++)
             {
                 for(int y = 0; y < (int)BoardSize.y; y++)
                 {
                     var newTile = Instantiate(Tile,
-                        new Vector3(startX + (xOffset * x), startY + (yOffset * y), 0.0f),
+                        new Vector3(startX + (xOffset * x), startY + (yOffset * y), BoardParentObject.position.z),
                         Tile.transform.rotation, BoardParentObject);
-                    newTile.name = $"{x}x{y}";
-                    Tiles[x, y] = newTile;
+                    var newTiltComponent = newTile.GetComponent<Tile>();
+                    if(newTiltComponent != null)
+                    {
+                        newTile.name = $"{x}x{y}";
+                        var randColor = GetRandomColor(new List<Color>() { previousColor });
+                        newTiltComponent.SetColor(randColor);
+                        Tiles[x, y] = newTiltComponent;
+                        previousColor = randColor;
+                    }
                 }
             }
         }
@@ -96,11 +110,32 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
         /// </summary>
         protected void ResetBoard()
         {
-            foreach(var tile in Tiles)
+            if(Tiles != null)
             {
-                Destroy(tile);
+                foreach(var tile in Tiles)
+                {
+                    Destroy(tile);
+                }
+                Array.Clear(Tiles, 0, Tiles.Length);
             }
-            Array.Clear(Tiles, 0, Tiles.Length);
+        }
+
+        /// <summary>
+        /// Gets a random color from <see cref="PitchColors"/> given an exclude list.
+        /// </summary>
+        /// <param name="excludeColors">Colors to exclude.</param>
+        /// <returns>Random color.</returns>
+        protected Color GetRandomColor(List<Color> excludeColors)
+        {
+            var possibleCharacters = new List<Color>();
+            possibleCharacters.AddRange(PitchColors);
+
+            foreach(var color in excludeColors)
+            {
+                possibleCharacters.Remove(color);
+            }
+
+            return possibleCharacters[UnityEngine.Random.Range(0, possibleCharacters.Count)];
         }
         #endregion Methods
     }

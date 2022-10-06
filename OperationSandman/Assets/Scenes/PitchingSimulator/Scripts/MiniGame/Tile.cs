@@ -2,8 +2,6 @@
 
 namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
 {
-    using System;
-    using System.Collections.Generic;
     using UnityEngine;
 
     public class Tile : MonoBehaviour
@@ -16,6 +14,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
         #endregion Events
 
         #region Properties
+        public Color TileColor { get; private set; }
         #endregion Properties
 
         #region Methods
@@ -35,6 +34,12 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
         /// </summary>
         protected void Start()
         {
+        }
+
+        public void SetColor(Color color)
+        {
+            TileColor = color;
+            TileSpriteRenderer.material.color = color;
         }
         #endregion Methods
     }

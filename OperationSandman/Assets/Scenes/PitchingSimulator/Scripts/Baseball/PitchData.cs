@@ -46,6 +46,12 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Baseball
         public Sprite PitchSprite;
 
         /// <summary>
+        /// The color of the pitch as it relates to the game board.
+        /// </summary>
+        [SerializeField]
+        public Color PitchColor;
+
+        /// <summary>
         /// The delta positon that moves with <see cref="EndPoint"/>
         /// </summary>
         [NonSerialized]
