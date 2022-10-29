@@ -8,12 +8,22 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
     {
         #region Fields
         public SpriteRenderer TileSpriteRenderer;
+
+        /// <summary>
+        /// The collider that defines the strike zone.
+        /// </summary>
+        /// <remarks>No collider events are used.</remarks>
+        [SerializeField]
+        protected Collider Collider;
         #endregion Fields
 
         #region Events
         #endregion Events
 
         #region Properties
+        public Vector2 BoardPosition { get; set; }
+        public int Row { get; set; }
+        public int Column { get; set; }
         public Color TileColor { get; private set; }
         #endregion Properties
 
@@ -40,6 +50,15 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.MiniGame
         {
             TileColor = color;
             TileSpriteRenderer.material.color = color;
+        }
+
+        /// <summary>
+        /// Determines if the pitch is pointing a valid direction.
+        /// </summary>
+        /// <returns>True if it is within bounds. Else false.</returns>
+        public bool IsTouchingTile(Vector3 contactPoint)
+        {
+            return Collider.bounds.Contains(contactPoint);
         }
         #endregion Methods
     }

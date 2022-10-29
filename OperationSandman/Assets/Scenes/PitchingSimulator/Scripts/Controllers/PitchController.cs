@@ -53,6 +53,12 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
         protected StrikeZoneController StrikeZoneController;
 
         /// <summary>
+        /// Reference to the board controller for the game.
+        /// </summary>
+        [SerializeField]
+        protected BoardController BoardController;
+
+        /// <summary>
         /// Dynamic list of all of the baseballs we have in the scene.
         /// </summary>
         [NonSerialized]
@@ -182,7 +188,7 @@ namespace Assets.Scenes.PitchingSimualtor.Scripts.Controllers
                 {
                     baseballScript.Throw(pitchData);
                     yield return new WaitForSeconds(pitchData.Duration);
-                    StrikeZoneController.OnPitchFinished(pitchData.EndPoint);
+                    BoardController.OnPitchFinished(pitchData.EndPoint);
                 }
                 else
                 {
